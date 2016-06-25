@@ -14,16 +14,16 @@ public extension CSArrayType where Iterator.Element == UInt8 {
             return nil
         }
 
-        return NSData(bytes: bytesArray).base64EncodedString([])
+        return Data(bytes: bytesArray).base64EncodedString()
     }
 
     public init(base64: String) {
         self.init()
 
-        guard let decodedData = NSData(base64Encoded: base64, options: []) else {
+        guard let decodedData = Data(base64Encoded: base64) else {
             return
         }
 
-        self.append(contentsOf: decodedData.arrayOfBytes())
+        self.append(contentsOf: decodedData.bytes)
     }
 }
